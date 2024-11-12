@@ -1,0 +1,16 @@
+*{
+    margin: 0px;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+canvas{
+    z-index: 10;
+    background-color: black;
+    outline: 2px solid white;
+}
