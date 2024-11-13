@@ -3,6 +3,9 @@ const ctx = canvas.getContext("2d")
 let animreq;
 let enemyspawn;
 
+let img = new Image()
+img.src = "img/space-ship-svgrepo-com.svg"
+
 //  -----===Player Info===----- //
 
 let thisplayer = {
@@ -35,13 +38,7 @@ let shooter = {
         bullets.push(new_bullet)
     },
     draw() {
-        ctx.fillStyle = 'black';
-
-        ctx.beginPath()
-        ctx.moveTo(this.x, this.y)
-        ctx.lineTo(this.x + 30, this.y - 60)
-        ctx.lineTo(this.x + 60, this.y)
-        ctx.fill()
+            ctx.drawImage(img,this.x,this.y,60,60)
     }
 }
 
@@ -180,8 +177,8 @@ function game() {
         if (interaction.right === true && shooter.x < 540) {
             shooter.x += 4
         }
+        animreq = requestAnimationFrame(game)
     }
-    animreq = requestAnimationFrame(game)
 }
 function spawnenemy(){
     enemyspawn = setInterval(() => {
@@ -227,6 +224,7 @@ function game_over() {
     cancelAnimationFrame(animreq)
     clearInterval(enemyspawn)
     thisplayer.currentscore = 0
+    console.log(img);
     menu()
 }
 //  ===Game State Detection===----- //
