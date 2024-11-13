@@ -8,11 +8,30 @@ img.src = "img/space-ship-svgrepo-com.svg"
 
 //  -----===Player Info===----- //
 
+let stored_nick = localStorage.getItem("nickname")
+let stored_score = localStorage.getItem("score")
+
 let thisplayer = {
-    highscore: 0,
+    highscore: stored_score,
     currentscore: 0,
-    nickname: "player"
+    nickname: ""
 }
+console.log(stored_nick);
+
+if (stored_nick === "null") {
+        let newnickname = window.prompt("Insira seu nome","Jogador")
+        localStorage.setItem("nickname",newnickname)
+        localStorage.setItem("score",0)
+} else {
+    thisplayer.nickname = stored_nick
+}
+
+const changename = document.getElementById("changename").addEventListener("click",e=>{
+    let newnickname = window.prompt("Insira seu novo nome","Jogador")
+    localStorage.setItem("nickname",newnickname)
+    thisplayer.nickname = newnickname
+    menu()
+})
 
 //  -----===Game Info===----- //
 
@@ -94,7 +113,7 @@ function menu() {
     ctx.clearRect(0, 0, 600, 900);
     ctx.fillStyle = 'white';
     ctx.font = '30px sans-serif';
-    ctx.fillText(player.nickname, 20, 40, 300);
+    ctx.fillText(thisplayer.nickname, 20, 40, 300);
     ctx.fillText("Leaderboard", 400, 40, 300);
     for (let index = 0; index < 10; index++) {
         ctx.font = '20px sans-serif';
@@ -221,6 +240,7 @@ function game_over() {
     if(thisplayer.currentscore > thisplayer.highscore){
         thisplayer.highscore = thisplayer.currentscore
     }
+    localStorage.setItem("score",thisplayer.highscore)
     cancelAnimationFrame(animreq)
     clearInterval(enemyspawn)
     thisplayer.currentscore = 0

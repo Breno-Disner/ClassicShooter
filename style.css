@@ -5,6 +5,7 @@ body{
     height: 100vh;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: black;
@@ -13,4 +14,10 @@ canvas{
     z-index: 10;
     background-color: black;
     outline: 2px solid white;
+}
+#changename{
+    background-color: black;
+    color: white;
+    outline: 1px solid white;
+    padding: 10px;
 }
